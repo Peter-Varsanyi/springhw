@@ -18,9 +18,9 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	<bean id="smallWraith" scope="factory" class="com.epam.training.SpringHW.domain.CreepFactory"></bean>
-	<context:component-scan base-package="com.epam.training.SpringHW" />
 
+	<context:component-scan base-package="com.epam.training.SpringHW" />
+	<bean class="com.epam.training.SpringHW.domain.MyBeanProcessor" />
 	<util:list id="heroSkills">
 		<bean id="q" class="com.epam.training.SpringHW.domain.Skill" c:name="Sonic Wave" p:coolDown="11" p:damage="50"
 			p:range="1100" />
@@ -37,15 +37,25 @@
 		<bean class="com.epam.training.SpringHW.domain.SummonerSkill" c:name="Flash" p:coolDown="280" p:range="500" />
 	</util:list>
 
-	<util:list>
-		<bean class="com.epam.training.SpringHW.domain.Creep" c:name="BlueGolem" p:damage="80" />
-		<ref bean="smallWraith" />
-		<bean class="com.epam.training.SpringHW.domain.Creep" c:name="SmallWraith2" p:damage="20" />
-	</util:list>
 
+	<bean id="smallWraith" class="com.epam.training.SpringHW.domain.WraithFactory" p:maxDamage="40" p:minDamage="20"
+		p:health="150" />
 
-	<bean class="com.epam.training.SpringHW.domain.LeeSin" c:name="Lee Sin" p:damage="50" p:skills-ref="heroSkills"
-		p:summonerSkills="summonerSkills" />
+	<util:map id="CreepCamp">
+		<entry key="creep">
+			<list>
+				<bean class="com.epam.training.SpringHW.domain.Creep" c:name="BlueGolem" p:damage="80" p:health="800" />
+				<ref bean="smallWraith" />
+			</list>
+		</entry>
+		<entry key="player">
+			<ref bean="leesin" />
+		</entry>
+	</util:map>
+
+	<bean id="camp" class="com.epam.training.SpringHW.domain.Camp" p:members-ref="CreepCamp" />
+	<bean id="leesin" class="com.epam.training.SpringHW.domain.LeeSin" c:name="Lee Sin" p:damage="50" p:skills-ref="heroSkills"
+		p:summonerSkills-ref="summonerSkills" p:health="500" />
 
 
 </beans>
