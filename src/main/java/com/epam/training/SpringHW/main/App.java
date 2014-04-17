@@ -1,6 +1,7 @@
 package com.epam.training.SpringHW.main;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,16 +23,20 @@ public class App {
 		final List<Base> creeps = camp.getMembers().get("creep");
 		final Base player = camp.getMembers().get("player").get(0);
 
-		// while (camp.isAnyoneAlive()) {
-		//
-		// for (final Base creep : creeps) {
-		// creep.attack(player);
-		// }
-		//
-		// for (final Base creep : creeps) {
-		// player.attack(creep);
-		// }
-		//
-		// }
+		final Object[] names = { player.getName(), creeps.get(0).getName() };
+		final String welcomeMessage = applicationContext
+				.getMessage("spring.welcomeMessage", names, Locale.getDefault());
+		System.out.println(welcomeMessage);
+		while (camp.isAnyoneAlive()) {
+
+			for (final Base creep : creeps) {
+				creep.attack(player);
+			}
+
+			for (final Base creep : creeps) {
+				player.attack(creep);
+			}
+
+		}
 	}
 }
