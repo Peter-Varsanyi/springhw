@@ -22,16 +22,16 @@ public class App {
 		final List<Base> creeps = camp.getMembers().get("creep");
 		final Base player = camp.getMembers().get("player").get(0);
 
-		while (camp.isAnyoneAlive()) {
-
-			for (final Base creep : creeps) {
-				creep.attack(player);
-			}
-
-			for (final Base creep : creeps) {
-				player.attack(creep);
-			}
-
-		}
+		// while (camp.isAnyoneAlive()) {
+		//
+		// for (final Base creep : creeps) {
+		// creep.attack(player);
+		// }
+		//
+		// for (final Base creep : creeps) {
+		// player.attack(creep);
+		// }
+		//
+		// }
 	}
 }

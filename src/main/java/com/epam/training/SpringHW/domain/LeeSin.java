@@ -32,4 +32,5 @@ public class LeeSin extends Hero {
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

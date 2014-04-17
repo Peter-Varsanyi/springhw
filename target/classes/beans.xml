@@ -19,8 +19,10 @@
 	</bean>
 
 
-	<context:component-scan base-package="com.epam.training.SpringHW" />
+	<context:component-scan base-package="com.epam.training.SpringHW.domain" />
+	
 	<bean class="com.epam.training.SpringHW.domain.MyBeanProcessor" />
+	
 	<util:list id="heroSkills">
 		<bean id="q" class="com.epam.training.SpringHW.domain.Skill" c:name="Sonic Wave" p:coolDown="11" p:damage="50"
 			p:range="1100" />
@@ -53,9 +55,14 @@
 		</entry>
 	</util:map>
 
+	<bean class="com.epam.training.SpringHW.domain.Item" id="weapon" p:damage="40" p:health="400" />
+
+
 	<bean id="camp" class="com.epam.training.SpringHW.domain.Camp" p:members-ref="CreepCamp" />
 	<bean id="leesin" class="com.epam.training.SpringHW.domain.LeeSin" c:name="Lee Sin" p:damage="50" p:skills-ref="heroSkills"
 		p:summonerSkills-ref="summonerSkills" p:health="500" />
+	
+	
 
 
 </beans>
